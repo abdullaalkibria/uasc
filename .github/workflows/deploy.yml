@@ -29,9 +29,13 @@ jobs:
       - name: Install deps
         run: npm install --no-audit --no-fund
 
+      # 👇 Add this step (CI-only types; not saved to package.json)
+      - name: Install missing type packages (CI only)
+        run: npm install -D @types/react@18.3.3 @types/node@20 --no-save
+
       - name: Build (Next export to out/)
         env:
-          NEXT_PUBLIC_BASE_PATH: /uasc   # IMPORTANT for project pages
+          NEXT_PUBLIC_BASE_PATH: /uasc
         run: npm run build
 
       - name: Configure Pages

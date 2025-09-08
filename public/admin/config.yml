@@ -1,0 +1,98 @@
+backend:
+  name: git-gateway
+  branch: main
+# For Cloudinary, you can optionally use the media library:
+# media_library:
+#   name: cloudinary
+#   config:
+#     cloud_name: YOUR_CLOUD_NAME
+#     api_key: YOUR_API_KEY
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locales: ["en", "bn"]
+i18n:
+  structure: multiple_folders
+  locales: ["en", "bn"]
+  default_locale: "en"
+
+collections:
+  - name: "notices"
+    label: "Notices"
+    folder: "content"
+    create: true
+    i18n: true
+    slug: "{{slug}}"
+    path: "{{locale}}/notices/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string", i18n: true}
+      - {label: "Date", name: "date", widget: "datetime", i18n: duplicate}
+      - {label: "Body", name: "body", widget: "markdown", i18n: true}
+
+  - name: "events"
+    label: "Events"
+    folder: "content"
+    create: true
+    i18n: true
+    slug: "{{slug}}"
+    path: "{{locale}}/events/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string", i18n: true}
+      - {label: "Date", name: "date", widget: "datetime", i18n: duplicate}
+      - {label: "Body", name: "body", widget: "markdown", i18n: true}
+
+  - name: "gallery"
+    label: "Gallery"
+    folder: "content"
+    create: true
+    i18n: true
+    slug: "{{slug}}"
+    path: "{{locale}}/gallery/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string", i18n: true}
+      - {label: "Date", name: "date", widget: "datetime", i18n: duplicate}
+      - {label: "Images", name: "images", widget: "list", field: {label: "Image", name: "image", widget: "image"}, i18n: duplicate}
+
+  - name: "staff"
+    label: "Staff"
+    folder: "content"
+    create: true
+    i18n: true
+    slug: "{{slug}}"
+    path: "{{locale}}/staff/{{slug}}"
+    fields:
+      - {label: "Name", name: "name", widget: "string", i18n: true}
+      - {label: "Designation", name: "designation", widget: "string", i18n: true}
+      - {label: "Email", name: "email", widget: "string", i18n: duplicate, required: false}
+      - {label: "Phone", name: "phone", widget: "string", i18n: duplicate, required: false}
+      - {label: "Photo", name: "photo", widget: "image", i18n: duplicate, required: false}
+      - {label: "Date", name: "date", widget: "datetime", i18n: duplicate}
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "content/en/pages/admissions.md"
+        label: "Admissions (EN)"
+        name: "admissions_en"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - file: "content/bn/pages/admissions.md"
+        label: "Admissions (BN)"
+        name: "admissions_bn"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - file: "content/en/pages/academics.md"
+        label: "Academics (EN)"
+        name: "academics_en"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
+      - file: "content/bn/pages/academics.md"
+        label: "Academics (BN)"
+        name: "academics_bn"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}

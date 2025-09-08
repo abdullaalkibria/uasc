@@ -3,6 +3,13 @@ import Link from 'next/link';
 import { getMessages } from 'next-intl/server';
 import { LanguageSwitcher } from '~/components/LanguageSwitcher';
 
+export function generateStaticParams() {
+  return [
+    { locale: 'en' },
+    { locale: 'bn' }
+  ];
+}
+
 export default async function RootLayout({children, params}:{children:React.ReactNode, params:{locale:string}}){
   await getMessages();
   return (
